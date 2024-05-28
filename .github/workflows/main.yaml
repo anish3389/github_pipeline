@@ -57,6 +57,9 @@ jobs:
           aws-session-token: ${{ env.awsSessionToken }}
           aws-region: ${{ env.awsRegion }}
           profile-name: default
+        
+      - name: check
+        run: ls ~/.aws/ && cat ~/.aws/credentials
 
       - name: Install ansible
         run: pip3 install boto3 ansible
