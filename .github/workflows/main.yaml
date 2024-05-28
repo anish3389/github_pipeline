@@ -16,7 +16,7 @@ env:
 
 jobs:
   run_terraform:
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
