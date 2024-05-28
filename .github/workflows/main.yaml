@@ -58,7 +58,10 @@ jobs:
           aws-region: ${{ env.awsRegion }}
 
       - name: Install ansible
-        run: pip3 install ansible
+        run: pip3 install boto3 ansible
+
+      - name: Install ansible modules
+        run: ansible-galaxy collection install -r requirements.yml
 
       - name: Run ansible
         run: cd ansible && ansible-playbook -i inventory_aws_ec2.yml playbook.yml
