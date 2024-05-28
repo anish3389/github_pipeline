@@ -7,7 +7,10 @@
     state: present
     update_cache: true
 
-# - name: Download file from s3
+- name: Download file from s3
+  amazon.aws.s3_object:
+    bucket: somebucket 
+
 
 - name: Configure Nginx
   ansible.builtin.template:
