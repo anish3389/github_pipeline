@@ -10,7 +10,6 @@ module "ec2" {
   subnet_id                   = var.subnet_id
   create_iam_instance_profile = var.create_iam_instance_profile
   iam_role_description        = "SSM Role for accessing EC2 instance"
-  #   key_name = try(var.key_name, null)
 
   iam_role_policies = {
     SSM = var.ssm_policy
@@ -30,5 +29,11 @@ module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket = "pipeline-anish-bucket"
+}
 
+resource "aws_s3_object" "file_upload" {
+  bucket = module.s3_bucket.s3_bucket_id
+  key    = "index.html"
+  source = "../code/index.html"
+  etag   = "${filemd5("../code/index.html")}"
 }

@@ -34,9 +34,6 @@ jobs:
           aws-session-token: ${{ env.awsSessionToken }}
           aws-region: ${{ env.awsRegion }}
 
-      - name: test creds
-        run: aws s3 ls
-
       - name: Terraform Initialize
         id: init
         run: |
@@ -46,3 +43,6 @@ jobs:
         id: apply
         run: |
           cd terraform && terraform apply -var-file=dev.tfvars -auto-approve -no-color
+
+      # - name: test creds
+      #   run: aws s3 ls
