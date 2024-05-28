@@ -7,7 +7,7 @@ on:
 
 env:
   terraformVersion: 1.8.2
-  awsAccessKeyId: $${{ secrets.AWS_ACCESS_KEY_ID }}
+  awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
   awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   awsSessionToken: ${{ secrets.AWS_SESSION_TOKEN }}
   awsRegion: us-east-1
