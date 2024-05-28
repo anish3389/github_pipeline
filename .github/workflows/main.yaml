@@ -15,16 +15,39 @@ env:
 
 
 jobs:
-  run_terraform:
+  # run_terraform:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: Setup Terraform
+  #       uses: hashicorp/setup-terraform@v2
+  #       with:
+  #         terraform_version: ${{ env.terraformVersion }}
+  #         terraform_wrapper: false
+
+  #     - name: configure aws credentials
+  #       uses: aws-actions/configure-aws-credentials@v3
+  #       with:
+  #         aws-access-key-id: ${{ env.awsAccessKeyId }}
+  #         aws-secret-access-key: ${{ env.awsSecretAccessKey }}
+  #         aws-session-token: ${{ env.awsSessionToken }}
+  #         aws-region: ${{ env.awsRegion }}
+
+  #     - name: Terraform Initialize
+  #       id: init
+  #       run: |
+  #         cd terraform && terraform init
+
+  #     - name: Terraform Apply
+  #       id: apply
+  #       run: |
+  #         cd terraform && terraform apply -var-file=dev.tfvars -auto-approve -no-color
+
+  run_ansible:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: ${{ env.terraformVersion }}
-          terraform_wrapper: false
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -34,15 +57,36 @@ jobs:
           aws-session-token: ${{ env.awsSessionToken }}
           aws-region: ${{ env.awsRegion }}
 
-      - name: Terraform Initialize
-        id: init
-        run: |
-          cd terraform && terraform init
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: playbook.yml
+          directory: ../ansible
 
-      - name: Terraform Apply
-        id: apply
-        run: |
-          cd terraform && terraform apply -var-file=dev.tfvars -auto-approve -no-color
 
+
+      # - name: Setup Terraform
+      #   uses: hashicorp/setup-terraform@v2
+      #   with:
+      #     terraform_version: ${{ env.terraformVersion }}
+      #     terraform_wrapper: false
+
+      # - name: configure aws credentials
+      #   uses: aws-actions/configure-aws-credentials@v3
+      #   with:
+      #     aws-access-key-id: ${{ env.awsAccessKeyId }}
+      #     aws-secret-access-key: ${{ env.awsSecretAccessKey }}
+      #     aws-session-token: ${{ env.awsSessionToken }}
+      #     aws-region: ${{ env.awsRegion }}
+
+      # - name: Terraform Initialize
+      #   id: init
+      #   run: |
+      #     cd terraform && terraform init
+
+      # - name: Terraform Apply
+      #   id: apply
+      #   run: |
+      #     cd terraform && terraform apply -var-file=dev.tfvars -auto-approve -no-color
       # - name: test creds
       #   run: aws s3 ls
