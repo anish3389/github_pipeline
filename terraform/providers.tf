@@ -1,11 +1,11 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
   default_tags {
     tags = {
-      project   = "ansible"
-      silo      = "intern"
-      terraform = "true"
-      owner     = "anish.sapkota"
+      project   = var.project
+      silo      = var.silo
+      terraform = var.terraform
+      owner     = var.owner
     }
   }
 }

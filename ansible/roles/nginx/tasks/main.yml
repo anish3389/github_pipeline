@@ -8,6 +8,7 @@
     state: present
     update_cache: true
 
+# boto3 is required to run download file from s3
 - name: Install boto3
   ansible.builtin.pip:
     name: boto3
@@ -20,6 +21,7 @@
     object: index.html
     overwrite: true
 
+# Copy template file to nginx and register its restart handler
 - name: Configure Nginx
   ansible.builtin.template:
     src: nginx.j2

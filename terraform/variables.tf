@@ -19,7 +19,6 @@ variable "terraform" {
   default     = true
 }
 
-
 variable "owner" {
   description = "Name to be used on all the resources as identifier"
   type        = string
@@ -32,14 +31,14 @@ variable "silo" {
   default     = ""
 }
 
+
 variable "ami_id" {}
 variable "instance_type" {}
 variable "sg_id" {}
 variable "subnet_id" {}
-# variable "public_subnet_id" {}
 variable "monitoring" {}
 variable "associate_public_ip_address" {}
 variable "create_iam_instance_profile" {}
 variable "ssm_policy" {}
 variable "name" {}
-# variable "server" {}
+variable "bucket_name" {}

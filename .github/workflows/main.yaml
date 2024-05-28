@@ -4,7 +4,6 @@ on:
   push:
     branches: [ INTERN-658-pipeline ]
 
-
 env:
   terraformVersion: 1.8.2
   awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
