@@ -1,15 +1,12 @@
 ---
 - name: Deploy html
   hosts: aws_ec2
-  gather_facts: true
-  # become: true
-  # become_user: ubuntu
+  gather_facts: false
   roles:
    - nginx
   vars:
     ansible_connection: aws_ssm
     ansible_aws_ssm_bucket_name: 8586-terraform-state
-    # ansible_aws_ssm_profile: default
     ansible_become: true
     ansible_become_user: root
     ansible_aws_ssm_timeout: 600

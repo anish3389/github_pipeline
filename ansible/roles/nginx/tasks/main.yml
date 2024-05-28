@@ -4,13 +4,21 @@
     pkg:
      - nginx
      - awscli
+     - python3-pip
     state: present
     update_cache: true
 
+- name: Install boto3
+  ansible.builtin.pip:
+    name: boto3
+
 - name: Download file from s3
   amazon.aws.s3_object:
-    bucket: somebucket 
-
+    bucket: "{{ vars.bucket_name }}"
+    mode: get
+    dest: /var/www/html/index.html
+    object: index.html
+    overwrite: true
 
 - name: Configure Nginx
   ansible.builtin.template:
