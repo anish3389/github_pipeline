@@ -57,12 +57,11 @@ jobs:
           aws-session-token: ${{ env.awsSessionToken }}
           aws-region: ${{ env.awsRegion }}
 
-      - name: Run playbook
-        uses: dawidd6/action-ansible-playbook@v2
-        with:
-          playbook: playbook.yml
-          directory: ansible
+      - name: Install ansible
+        run: pip3 install ansible
 
+      - name: Run ansible
+        run: cd ansible && ansible-playbook -i inventory_aws_ec2.yml playbook.yml
 
 
       # - name: Setup Terraform
