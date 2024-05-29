@@ -1,4 +1,4 @@
-name: Publish code
+name: Publish code to server
 
 on:
   push:
