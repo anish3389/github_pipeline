@@ -1,30 +1,36 @@
 ---
 - name: Install aws-cli and nginx
   ansible.builtin.apt:
-    pkg:
-     - nginx
-     - awscli
-     - python3-pip
+    pkg: "{{ apt_packages }}"
     state: present
     update_cache: true
 
 # boto3 is required to run download file from s3
 - name: Install boto3
   ansible.builtin.pip:
-    name: boto3
+    name: "{{ python_packages }}"
 
 - name: Download file from s3
   amazon.aws.s3_object:
     bucket: "{{ vars.bucket_name }}"
     mode: get
-    dest: /var/www/html/index.html
-    object: index.html
+    dest: "{{ server_code_file_dir }}/{{ code_file }}"
+    object: "{{ code_file }}"
     overwrite: true
 
-# Copy template file to nginx and register its restart handler
-- name: Configure Nginx
+- name: Remove default Nginx config file
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Upload Nginx config file
   ansible.builtin.template:
     src: nginx.j2
-    dest: /etc/nginx/sites-enabled/default
-  notify: Restart nginx
+    dest: /etc/nginx/sites-available/code.conf
 
+- name: Create a symbolic link
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/code.conf
+    dest: /etc/nginx/sites-enabled/code.conf
+    state: link
+  notify: Restart nginx

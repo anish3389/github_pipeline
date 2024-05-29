@@ -1,0 +1,7 @@
+---
+apt_packages:
+  - nginx
+  - awscli
+  - python3-pip
+python_packages: 
+  - boto3
