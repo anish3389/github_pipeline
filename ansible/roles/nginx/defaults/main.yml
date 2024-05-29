@@ -5,3 +5,4 @@ apt_packages:
   - python3-pip
 python_packages: 
   - boto3
+nginx_conf_file: code.conf

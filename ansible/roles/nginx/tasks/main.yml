@@ -26,11 +26,11 @@
 - name: Upload Nginx config file
   ansible.builtin.template:
     src: nginx.j2
-    dest: /etc/nginx/sites-available/code.conf
+    dest: "/etc/nginx/sites-available/{{ nginx_conf_file }}"
 
 - name: Create a symbolic link
   ansible.builtin.file:
-    src: /etc/nginx/sites-available/code.conf
-    dest: /etc/nginx/sites-enabled/code.conf
+    src: "/etc/nginx/sites-available/{{ nginx_conf_file }}"
+    dest: "/etc/nginx/sites-enabled/code.conf/{{ nginx_conf_file }}"
     state: link
   notify: Restart nginx
