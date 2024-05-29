@@ -1,7 +1,6 @@
 module "ec2" {
   source                      = "terraform-aws-modules/ec2-instance/aws"
   version                     = "5.5.0"
-  create                      = false
   instance_type               = var.instance_type
   ami                         = var.ami_id
   monitoring                  = var.monitoring
