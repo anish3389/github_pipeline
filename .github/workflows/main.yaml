@@ -3,6 +3,9 @@ name: Publish code to server
 on:
   push:
     branches: [ INTERN-658-pipeline ]
+  pull_request:
+    branches: [ main ]
+
 
 env:
   terraformVersion: 1.8.2
