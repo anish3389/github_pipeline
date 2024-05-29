@@ -27,3 +27,4 @@
     src: nginx.j2
     dest: /etc/nginx/sites-enabled/default
   notify: Restart nginx
+
