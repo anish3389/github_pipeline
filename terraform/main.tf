@@ -1,6 +1,7 @@
 module "ec2" {
   source                      = "terraform-aws-modules/ec2-instance/aws"
   version                     = "5.5.0"
+  create                      = false
   instance_type               = var.instance_type
   ami                         = var.ami_id
   monitoring                  = var.monitoring
@@ -28,5 +29,5 @@ resource "aws_s3_object" "file_upload" {
   bucket = module.s3_bucket.s3_bucket_id
   key    = "index.html"
   source = "../code/index.html"
-  etag   = "${filemd5("../code/index.html")}"
+  etag   = filemd5("../code/index.html")
 }
