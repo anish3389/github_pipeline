@@ -17,6 +17,7 @@
     dest: "{{ server_code_file_dir }}/{{ code_file }}"
     object: "{{ code_file }}"
     overwrite: true
+    region: "{{ bucket_region }}"
 
 - name: Remove default Nginx config file
   ansible.builtin.file:
