@@ -33,8 +33,7 @@ jobs:
 
       - name: Terraform Initialize
         id: init
-        run: |
-          cd terraform && terraform init
+        run: cd terraform && terraform init
 
       - name: Terraform Apply
         id: apply
@@ -42,6 +41,7 @@ jobs:
           cd terraform && terraform apply -var-file=dev.tfvars -auto-approve -no-color
 
   run_ansible:
+    needs: [run_terraform]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

@@ -1,7 +1,6 @@
 ---
 - name: Deploy html
   hosts: aws_ec2
-  gather_facts: false
   roles:
    - nginx
   vars:
