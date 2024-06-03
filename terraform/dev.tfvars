@@ -4,7 +4,7 @@ silo                        = "intern"
 project                     = "ansible-nginx-server"
 terraform                   = true
 
-name   = "ansible_anish_public"
+name   = "gh_ansible_anish_public"
 ami_id                      = "ami-012485deee5681dc0"
 instance_type               = "t2.micro"
 associate_public_ip_address = true
