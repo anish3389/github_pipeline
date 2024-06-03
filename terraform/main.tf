@@ -22,6 +22,7 @@ module "ec2" {
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
   bucket = var.bucket_name
+  force_destroy = true
 }
 
 resource "aws_s3_object" "file_upload" {
