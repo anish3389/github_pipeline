@@ -58,7 +58,7 @@ jobs:
           aws-region: ${{ env.awsRegion }}
 
       - name: Install ansible
-        run: pip3 install boto3 ansible
+        run: pip3 install -r requirements.txt
 
       - name: Install ansible modules
         run: cd ansible && ansible-galaxy collection install -r requirements.yml
