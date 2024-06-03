@@ -1,5 +1,5 @@
 ---
 code_file: index.html
 server_code_file_dir: /var/www/html
-bucket_name: pipeline-anish-bucket
+bucket_name: pipeline-anish-bucket3
 bucket_region: us-east-1
