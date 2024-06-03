@@ -14,4 +14,4 @@ subnet_id = "subnet-0f97b0bb45cdeb3b7"
 create_iam_instance_profile = true
 monitoring                  = true
 
-bucket_name = "pipeline-anish-bucket"
+bucket_name = "pipeline-anish-bucket3"
